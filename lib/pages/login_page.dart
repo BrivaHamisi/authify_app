@@ -1,11 +1,50 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class AnimatedLoginPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _AnimatedLoginPageState();
+  }
+}
+
+class _AnimatedLoginPageState extends State<AnimatedLoginPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        vsync: this,
+        duration: Duration(seconds: 2),
+        reverseDuration: Duration(milliseconds: 400));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _LoginPage(_controller);
+  }
+}
+
+class _LoginPage extends StatelessWidget {
   double _deviceHeight = 0.0;
   double _deviceWidth = 0.0;
 
   Color _primaryColor = Color.fromRGBO(125, 191, 211, 1.0);
   Color _secondaryColor = Color.fromRGBO(169, 224, 241, 1.0);
+
+  AnimationController _controller;
+
+  _LoginPage(this._controller) {
+    _controller = _controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
@@ -14,25 +53,24 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: _primaryColor,
         body: Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: _deviceWidth,
-            height: _deviceHeight * 0.60,
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _avatarWidget(),
-              SizedBox(height: _deviceHeight * 0.05),
-              _emailTextField(),
-              _passwordTextField(),
-              SizedBox(height: _deviceHeight * 0.10),
-              _loginButton()
-            ],
-          ),
-          )
-        ));
+            alignment: Alignment.center,
+            child: Container(
+              width: _deviceWidth,
+              height: _deviceHeight * 0.60,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _avatarWidget(),
+                  SizedBox(height: _deviceHeight * 0.05),
+                  _emailTextField(),
+                  _passwordTextField(),
+                  SizedBox(height: _deviceHeight * 0.10),
+                  _loginButton()
+                ],
+              ),
+            )));
   }
 
   Widget _avatarWidget() {
@@ -104,7 +142,9 @@ class LoginPage extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25), side: BorderSide(color: Colors.white)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+          side: BorderSide(color: Colors.white)),
       onPressed: () {},
     );
   }
