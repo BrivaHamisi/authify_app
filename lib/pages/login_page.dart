@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/animations/login_page_animations.dart';
 
 class AnimatedLoginPage extends StatefulWidget {
   @override
@@ -40,9 +41,12 @@ class _LoginPage extends StatelessWidget {
   Color _secondaryColor = Color.fromRGBO(169, 224, 241, 1.0);
 
   AnimationController _controller;
+  late EnterAnimation  _animation;
 
   _LoginPage(this._controller) {
     _controller = _controller;
+    _animation = EnterAnimation(_controller);
+    _controller.forward();
   }
 
   @override
@@ -75,7 +79,9 @@ class _LoginPage extends StatelessWidget {
 
   Widget _avatarWidget() {
     double _circleD = _deviceHeight * 0.25;
-    return Container(
+    return AnimatedBuilder(animation: _animation.controller, builder: (BuildContext _context, Widget? _widget){
+      print(_animation.circleSize);
+      return Container(
       height: _circleD,
       width: _circleD,
       decoration: BoxDecoration(
@@ -84,6 +90,7 @@ class _LoginPage extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage('assets/images/main_avatar.png'))),
     );
+    });
   }
 
   Widget _emailTextField() {
