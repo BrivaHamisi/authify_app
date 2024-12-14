@@ -87,7 +87,7 @@ class _LoginPage extends StatelessWidget {
       decoration: BoxDecoration(
           color: _secondaryColor,
           borderRadius: BorderRadius.circular(500),
-          image: DecorationImage(
+          image: const DecorationImage(
               image: AssetImage('assets/images/main_avatar.png'))),
     );
     });
