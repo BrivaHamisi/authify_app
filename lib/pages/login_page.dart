@@ -30,7 +30,7 @@ class _AnimatedLoginPageState extends State<AnimatedLoginPage>
   @override
   Widget build(BuildContext context) {
     return _LoginPage(_controller);
-    
+
   }
 }
 
@@ -97,7 +97,7 @@ class _LoginPage extends StatelessWidget {
   Widget _emailTextField() {
     return Container(
         width: _deviceWidth * 0.8,
-        child: TextField(
+        child: const TextField(
           cursorColor: Colors.white,
           autocorrect: false,
           style: TextStyle(
@@ -118,7 +118,7 @@ class _LoginPage extends StatelessWidget {
   Widget _passwordTextField() {
     return Container(
         width: _deviceWidth * 0.8,
-        child: TextField(
+        child: const TextField(
           obscureText: true,
           cursorColor: Colors.white,
           autocorrect: false,
