@@ -30,6 +30,7 @@ class _AnimatedLoginPageState extends State<AnimatedLoginPage>
   @override
   Widget build(BuildContext context) {
     return _LoginPage(_controller);
+    
   }
 }
 
